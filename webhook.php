@@ -19,7 +19,8 @@ if (!$numero || !$mensagem) {
 
 $resposta = "✅ Recebi sua mensagem: \"$mensagem\"";
 
-$url = "https://v5.z-api.io/instances/$zapi_instance/token/$zapi_token/send-text";
+$url = "https://api.z-api.io/instances/$zapi_instance/token/$zapi_token/send-text";
+
 $body = json_encode([
     "phone" => $numero,
     "message" => $resposta
