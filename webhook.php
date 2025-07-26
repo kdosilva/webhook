@@ -1,6 +1,6 @@
 <?php
 // Configurações da Z-API
-$zapi_instance = '3E401062FA83E0F253FEBE7C53096139';
+$zapi_instance = 'https://api.z-api.io/instances/3E401062FA83E0F253FEBE7C53096139/token/021056C63BB7C732FB534BCD/send-text';
 $zapi_token = '021056C63BB7C732FB534BCD';
 
 // ===== CAPTURA A MENSAGEM RECEBIDA DA Z-API =====
