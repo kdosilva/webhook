@@ -8,36 +8,39 @@ error_log("📥 INPUT: " . $input);
 $data = json_decode($input, true);
 error_log("📤 PARSED JSON: " . json_encode($data));
 
+// Verifica se é mensagem válida
 if (!$data || !isset($data['text']['message'])) {
     error_log("⚠️ Nada para processar.");
     http_response_code(200);
     exit("Nada recebido");
 }
 
-// Dados da mensagem
-$telefone = $data['phone'];
-$mensagem = $data['text']['message'] ?? '';
-$resposta = "Você disse: " . $mensagem;
-
-// ✅ Seu token e instance
+// 🔐 Seu token e instance ID
 $token = "3859B5F2795210F1012A7FE6";
 $instance = "3E401062FA83E0F253FEBE7C53096139";
 
-// ✅ URL com token incluído
+// 📞 Telefone e mensagem recebida
+$telefone = $data['phone'];
+$mensagem = $data['text']['message'] ?? '';
+
+// ✏️ Mensagem de resposta
+$resposta = "Você disse: " . $mensagem;
+
+// 🌐 URL da Z-API
 $url = "https://api.z-api.io/instances/$instance/token/$token/send-text";
 
-// ✅ Corpo da mensagem
+// 📦 Corpo da requisição
 $payload = [
     "phone" => $telefone,
     "message" => $resposta
 ];
 
-// Enviando com cURL
+// 🚀 Envio via cURL
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    "Client-Token: $token" // ✅ Incluindo o token também no cabeçalho
+    "Client-Token: $token" // ✅ Cabeçalho correto aqui
 ]);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
@@ -53,4 +56,3 @@ if ($error) {
 }
 
 echo "ok";
-
