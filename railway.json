@@ -1,0 +1,20 @@
+{
+  "build": {
+    "nixpacksPlan": {
+      "phases": {
+        "install": {
+          "dependsOn": [],
+          "cmds": ["echo install"]
+        },
+        "build": {
+          "dependsOn": ["install"],
+          "cmds": ["chmod +x start.sh"]
+        },
+        "start": {
+          "dependsOn": ["build"],
+          "cmds": ["./start.sh"]
+        }
+      }
+    }
+  }
+}
