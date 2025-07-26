@@ -1,3 +1,2 @@
 <?php
-echo "Webhook ativo e funcionando!";
-
+echo "✅ Webhook está funcionando!";
