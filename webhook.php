@@ -19,7 +19,7 @@ $resposta = "Você disse: " . $mensagem;
 
 // Token e instância (preencha com os seus dados reais)
 $token = "021056C63BB7C732FB534BCD";
-$instance = "3E401062FA83E0F253FEBE7C53096139";
+$instance = "https://api.z-api.io/instances/3E401062FA83E0F253FEBE7C53096139/token/021056C63BB7C732FB534BCD/send-text";
 
 $url = "https://api.z-api.io/instances/{$instance}/send-text";
 
