@@ -17,11 +17,12 @@ $telefone = $data['phone'];
 $mensagem = $data['text']['message'] ?? '';
 $resposta = "Você disse: " . $mensagem;
 
-// Token e instância (preencha com os seus dados reais)
-$token = "021056C63BB7C732FB534BCD";
-$instance = "https://api.z-api.io/instances/3E401062FA83E0F253FEBE7C53096139/token/021056C63BB7C732FB534BCD/send-text";
+// Preencha com seus dados reais
+$token = "3859B5F2795210F1012A7FE6";
+$instance = "3E401062FA83E0F253FEBE7C53096139";
 
-$url = "https://api.z-api.io/instances/{$instance}/send-text";
+// A URL precisa ter o token no caminho
+$url = "https://api.z-api.io/instances/$instance/token/$token/send-text";
 
 $payload = [
     "phone" => $telefone,
@@ -32,7 +33,6 @@ $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
-    "Client-Token: $token"
 ]);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
@@ -48,4 +48,5 @@ if ($error) {
 }
 
 echo "ok";
+
 
