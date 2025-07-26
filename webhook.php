@@ -1,3 +1,4 @@
+
 <?php
 error_log("📩 CHEGOU UMA MENSAGEM");
 
@@ -13,26 +14,30 @@ if (!$data || !isset($data['text']['message'])) {
     exit("Nada recebido");
 }
 
+// Dados da mensagem
 $telefone = $data['phone'];
 $mensagem = $data['text']['message'] ?? '';
 $resposta = "Você disse: " . $mensagem;
 
-// Preencha com seus dados reais
+// ✅ Seu token e instance
 $token = "3859B5F2795210F1012A7FE6";
 $instance = "3E401062FA83E0F253FEBE7C53096139";
 
-// A URL precisa ter o token no caminho
+// ✅ URL com token incluído
 $url = "https://api.z-api.io/instances/$instance/token/$token/send-text";
 
+// ✅ Corpo da mensagem
 $payload = [
     "phone" => $telefone,
     "message" => $resposta
 ];
 
+// Enviando com cURL
 $ch = curl_init($url);
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
+    "Client-Token: $token" // ✅ Incluindo o token também no cabeçalho
 ]);
 curl_setopt($ch, CURLOPT_POST, true);
 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($payload));
@@ -48,5 +53,4 @@ if ($error) {
 }
 
 echo "ok";
-
 
